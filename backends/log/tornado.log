@@ -1,0 +1,3 @@
+2024-01-12 21:35:37.038 | INFO     | loguru._logger:info:2044 - 启动程序,启动端口:8121
+2024-01-12 21:35:41.009 | INFO     | handlers:get:15 - index page
+2024-01-12 21:35:58.128 | INFO     | config:<module>:26 - 启动程序,启动端口:8121
