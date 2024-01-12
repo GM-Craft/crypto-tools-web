@@ -5,3 +5,8 @@
 - 提供国密算法库的调用
 
 
+## 运行
+```
+cd backends
+python main.py
+```
