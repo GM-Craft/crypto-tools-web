@@ -9,8 +9,7 @@ from handlers import CAppRouter
 
 
 async def main():
-    app = Application([], **config.SETTINGS)
-    CAppRouter.registerRoutes(app)
+    app = Application(CAppRouter.routeConfig, **config.SETTINGS)
     app.listen(options.port)
     await asyncio.Event().wait()
 
