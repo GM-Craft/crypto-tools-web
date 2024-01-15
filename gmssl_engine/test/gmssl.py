@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from ctypes.util import find_library
 from ctypes import *
 import os
 import sys
