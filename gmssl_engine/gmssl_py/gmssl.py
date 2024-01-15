@@ -23,9 +23,29 @@ def gmssl_version():
 
     return GmSSL_dllHandle.gmssl_version_num()
 
+
+def rand_bytes(size):
+    """
+    generate a random number(Type:bytes) of a specified length
+    """
+
+    buf = create_string_buffer(size)
+    GmSSL_dllHandle.rand_bytes(buf, c_size_t(size)) #write random number into buffer
+    return buf.raw
+
+def rand_int(size):
+    """
+    generate a random number(Type:int) of a specified length, byteorder='big'
+    """
+
+    radnint = int.from_bytes(rand_bytes(size), byteorder='big')
+    return radnint
+
+
 def main_test():
-    version = gmssl_version()
-    print(version)
+    rand = rand_bytes(1)
+    print(rand)
+    print(type(rand))
 
 if __name__ == '__main__':
     main_test()
