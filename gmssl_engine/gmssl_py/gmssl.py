@@ -17,6 +17,10 @@ except FileNotFoundError:
     raise
 
 def gmssl_version():
+    """
+    return version num of GmSSL
+    """
+
     return GmSSL_dllHandle.gmssl_version_num()
 
 def main_test():
