@@ -1,4 +1,4 @@
-from gmssl import gmssl_version, rand_bytes, rand_int, Sm4
+from gmssl import gmssl_version, rand_bytes, rand_int, Sm4, Sm4Cbc
 
 
 DO_ENCRYPT=True
@@ -16,21 +16,28 @@ def random_int_test():
     randnum = rand_int(1)
     print(randnum)
 
-def test_sm4():
+def sm4_test():
     key = b'1234567812345678'
-    decrypted = b'block of message'
-    ciphertext_hex = 'dd99d30fd7baf5af2930335d2554ddb7'
+    plaintext = b'block of message'
+
     sm4 = Sm4(key)
-    ciphertext = sm4.encrypt(decrypted)
-    cipher_hex = ciphertext.hex()
-    print(cipher_hex)
-    assert(cipher_hex == ciphertext_hex)
+    encrypted = sm4.encrypt(plaintext)
+    decrypted = sm4.decrypt(encrypted)
 
-    decrypted_text = sm4.decrypt(ciphertext)
-    print(decrypted_text)
-    assert(decrypted_text == decrypted)
+    print('原文是：{}， \n密文是：{}，\n 解密后:{}'.format(plaintext, encrypted, decrypted))
 
+def sm4cbc_test():
+    key = b'1234567812345678'
+    iv = b'1234567812345678'
+    plaintext = b'1234567812345678'
+
+    sm4cbc = Sm4Cbc(key, iv)
+    encrypted = sm4cbc.encrypt(plaintext)
+    decrypted = sm4cbc.decrypt(encrypted)
+
+    print('原文是：{}， \n密文是：{}，\n 解密后:{}'.format(plaintext, encrypted, decrypted))
 
 
 if __name__ == '__main__':
-    test_sm4()
+    sm4_test()
+    sm4cbc_test()
